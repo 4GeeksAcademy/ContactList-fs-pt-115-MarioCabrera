@@ -1,25 +1,31 @@
 export const initialStore = () => {
   return {
-    contacts: [{
-      name: "",
-      address: "",
-      phone: "",
-      mail: "",
-      id: "0"
-    }]
-
+    contacts: []
   }
 }
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
-    case 'add_contact':
+    case 'add_contact': {
+      const { name, address, phone, email, id } = action.payload;
 
-      const { name, address, phone, mail, id} = action.payload
+      const newContact = {
+        id,
+        name,
+        address,
+        phone,
+        email
+      };
 
       return {
         ...store,
-        contacts: store.contacts.map((contact) => (contact.id === id ? { ...contact, name: name, address: address, phone: phone, mail: mail } : contact))
+        contacts: [...store.contacts, newContact]
+      };
+    }
+    case "set_contacts":
+      return {
+        ...store,
+        contacts: action.payload
       };
     default:
       throw Error('Unknown action.');
