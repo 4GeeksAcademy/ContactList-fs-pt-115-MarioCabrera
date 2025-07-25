@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 
 export const Contacts = (props) => {
+    localStorage.setItem("image",`https://randomuser.me/api/portraits/${(Math.floor(Math.random() * 2) == 0 ? "men" : "women")}/${Math.floor(Math.random() * 100)}.jpg`)
+    const profile = localStorage.getItem("image")
     return (
         <>
             <div className="container mx-auto mt-4">
@@ -8,7 +10,7 @@ export const Contacts = (props) => {
                     <div className="row py-3 d-flex justify-content-between">
                         <div className="col-lg-3 d-flex justify-content-center">
                             <img
-                                src={`https://randomuser.me/api/portraits/${(Math.floor(Math.random() * 2) == 0 ? "men" : "women")}/${Math.floor(Math.random() * 100)}.jpg`}
+                                src={profile}
                                 className="rounded-circle"
                                 style={{ width: "200px", height: "200px" }}
                                 alt=""

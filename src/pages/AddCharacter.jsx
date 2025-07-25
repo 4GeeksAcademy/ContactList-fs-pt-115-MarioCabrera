@@ -15,7 +15,7 @@ export const AddCharacter = () => {
     setNewContact({ ...newContact, [e.target.name]: e.target.value })
   }
   const createContact = async () => {
-    const response = await fetch("https://playground.4geeks.com/contact/agendas/mario/contacts", {
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/${userName}/contacts/`, {
       method: "POST",
       headers: {
         'accept': 'application/json',
@@ -32,8 +32,9 @@ export const AddCharacter = () => {
   const navigate = useNavigate()
   const { id } = useParams();
   const [isEditing, setIsEditing] = useState(false)
+  const userName = localStorage.getItem("userName")
   const editContact = async () => {
-    const response = await fetch(`https://playground.4geeks.com/contact/agendas/mario/contacts/${id}`, {
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/${userName}/contacts/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
